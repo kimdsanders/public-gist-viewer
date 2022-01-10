@@ -25,7 +25,7 @@ function requestUserRepos(username) {
     const xhr = new XMLHttpRequest();
 
     // GitHub endpoint passing in username
-    const url = `https://api.github.com/gists`;
+    const url = `https://api.github.com/users/${username}/repos`;
 
     //  GET/POST, The URL, Async True/False
     xhr.open('GET', url, true);
@@ -55,7 +55,7 @@ function requestUserRepos(username) {
         } else {
 
             // Get the ul with id of of userRepos
-            let ul = document.;
+            let ul = document.getElementById('userRepos');
             let p = document.createElement('p');
             ul.appendChild(p);
             // Loop over each object in data array
@@ -68,7 +68,10 @@ function requestUserRepos(username) {
 
                 // Create the html markup for each li
                 li.innerHTML = (`
-                <p><strong>GIST:</strong> <a href="${data[i].files}">${data[i].files}</a></p>
+                <p><strong>Repo:</strong> ${data[i].name}</p>
+                <p><strong>Description:</strong> ${data[i].description}</p>
+                <p><strong>URL:</strong> <a href="${data[i].html_url}">${data[i].html_url}</a></p>
+                <p><strong>GIST:</strong> <a href="https://gist.github.com/${username}</a></p>
             `);
 
                 // Append each li to the ul
